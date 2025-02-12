@@ -441,7 +441,7 @@ export default function RueList() {
           </Box>
           <Button
             variant="contained"
-            color="primary"
+            color="red"
             sx={{ marginTop: 2 }}
             onClick={handleApplyFilter}
           >

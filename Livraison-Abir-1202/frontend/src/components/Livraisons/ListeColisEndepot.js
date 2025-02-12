@@ -230,7 +230,7 @@ export default function RueList() {
           variant="h5"
           sx={{ fontWeight: "bold", color: "#333", fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" } }}
         >
-          Liste des Colis en Attente
+          Liste des Colis Au dépôt
         </Typography>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
       

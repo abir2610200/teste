@@ -8,37 +8,40 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import PeopleIcon from "@mui/icons-material/People";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
-
-// Dashboard Cards Data
-const cardData = [
-  { title: "En attente", value: 0, amount: "0,000", color: "#FFC107", icon: <SyncIcon fontSize="medium" /> },
-  { title: "Au dépôt", value: 0, amount: "0,000", color: "#03A9F4", icon: <HomeIcon fontSize="medium" /> },
-  { title: "Retour dépôt", value: 0, amount: "0,000", color: "#03A9F4", icon: <HomeIcon fontSize="medium" /> },
-  { title: "En cours de livraison", value: 0, amount: "0,000", color: "#03A9F4", icon: <LocalShippingIcon fontSize="medium" /> },
-  { title: "Livrés", value: 0, amount: "0,000", color: "#4CAF50", icon: <MonetizationOnIcon fontSize="medium" /> },
-  { title: "Livrés payés", value: 0, amount: "N.C", color: "#4CAF50", icon: <PeopleIcon fontSize="medium" /> },
-  { title: "Livrés Rendez-vous", value: 0, amount: "0,000", color: "#03A9F4", icon: <SyncIcon fontSize="medium" /> },
-  { title: "Retour définitif", value: 0, amount: "0,000", color: "#F44336", icon: <ArrowBackIcon fontSize="medium" /> },
-  { title: "Inter-Agence", value: 0, amount: "0,000", color: "#F44336", icon: <AssignmentReturnIcon fontSize="medium" /> },
-  { title: "Retour Expéditeur", value: 0, amount: "0,000", color: "#F44336", icon: <PeopleIcon fontSize="medium" /> },
-  { title: "Retour payé", value: 0, amount: "0,000", color: "#F44336", icon: <ArrowBackIcon fontSize="medium" /> },
-  { title: "Non reçus", value: 0, amount: "0,000", color: "#000", icon: <ErrorOutlineIcon fontSize="medium" /> },
-];
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  // Get the logged-in user's name from localStorage
+  const navigate = useNavigate(); // Déclarer useNavigate dans le composant
+
+  // Récupération du nom d'utilisateur depuis le localStorage
   const username = localStorage.getItem("name") || "Utilisateur";
+
+  // Données des cartes du tableau de bord
+  const cardData = [
+    { title: "En attente", value: 0, amount: "0,000", color: "#FF9800", icon: <LocalShippingIcon fontSize="medium" /> },
+    { title: "Au dépôt", value: 0, amount: "0,000", color: "#03A9F4", icon: <HomeIcon fontSize="medium" /> },
+    { title: "Retour dépôt", value: 0, amount: "0,000", color: "#03A9F4", icon: <HomeIcon fontSize="medium" /> },
+    { title: "En cours de livraison", value: 0, amount: "0,000", color: "#03A9F4", icon: <LocalShippingIcon fontSize="medium" /> },
+    { title: "Livrés", value: 0, amount: "0,000", color: "#4CAF50", icon: <MonetizationOnIcon fontSize="medium" /> },
+    { title: "Livrés payés", value: 0, amount: "N.C", color: "#4CAF50", icon: <PeopleIcon fontSize="medium" /> },
+    { title: "Livrés Rendez-vous", value: 0, amount: "0,000", color: "#03A9F4", icon: <SyncIcon fontSize="medium" /> },
+    { title: "Retour Expéditeur", value: 0, amount: "0,000", color: "#F44336", icon: <PeopleIcon fontSize="medium" /> },
+    { title: "Retour payé", value: 0, amount: "0,000", color: "#F44336", icon: <ArrowBackIcon fontSize="medium" /> },
+    { title: "Non reçus", value: 0, amount: "0,000", color: "#000", icon: <ErrorOutlineIcon fontSize="medium" /> },
+  ];
 
   return (
     <Box sx={{ p: 2, mt: 2 }}>
-      {/* Welcome Message */}
-      <Box sx={{
-        backgroundColor: "#F9F9F9",
-        padding: "10px 15px",
-        borderRadius: "8px",
-        mb: 2,
-        textAlign: "center"
-      }}>
+      {/* Message de bienvenue */}
+      <Box
+        sx={{
+          backgroundColor: "#F9F9F9",
+          padding: "10px 15px",
+          borderRadius: "8px",
+          mb: 2,
+          textAlign: "center",
+        }}
+      >
         <Typography variant="h6" sx={{ fontWeight: "bold", color: "#333" }}>
           Bienvenue, {username} ! 👋
         </Typography>
@@ -47,24 +50,37 @@ const Dashboard = () => {
         </Typography>
       </Box>
 
-      {/* Status Cards */}
+      {/* Cartes d'état */}
       <Grid container spacing={1.5}>
         {cardData.map((card, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-            <Card 
-              sx={{ 
-                backgroundColor: card.color, 
-                color: "#fff", 
-                textAlign: "center", 
-                py: 1.5, 
-                borderRadius: "8px", 
-                boxShadow: "0px 2px 6px rgba(0,0,0,0.1)", 
-                minHeight: "100px", 
+            <Card
+              sx={{
+                backgroundColor: card.color,
+                color: "#fff",
+                textAlign: "center",
+                py: 1.5,
+                borderRadius: "8px",
+                boxShadow: "0px 2px 6px rgba(0,0,0,0.1)",
+                minHeight: "100px",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center"
+                justifyContent: "center",
+                cursor: "pointer", // Ajout du pointeur
               }}
+              onClick={() => {
+                if (card.title === "En attente") {
+                  navigate("/en-attente");
+                } else if (card.title === "Au dépôt") {
+                  navigate("/au-depot");
+                } else if (card.title === "Livrés") {
+                  navigate("/livrés");
+                }
+              }}
+              
             >
+
+              
               <CardContent sx={{ p: 1 }}>
                 {card.icon}
                 <Typography variant="h6" sx={{ fontWeight: "bold", mt: 0.5 }}>
