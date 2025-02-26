@@ -1,0 +1,41 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs
+logs/
+*.log
+yarn-error.log
+
+# Build files
+dist/
+build/
+.cache/
+.vite/
+
+# Editor & System Files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+
+# React Specific
+client/node_modules/
+client/build/
+client/.env
+client/.cache/
+
+# Express Server Specific
+server/node_modules/
+server/.env
+server/dist/
